@@ -9,9 +9,9 @@ export const site = {
   heroHeadline:
     "Desenvolvedor Full Stack em formação contínua, com experiência real em infraestrutura, automação, cloud e segurança da informação.",
   heroSub:
-    "Profissional de TI com mais de 4 anos em ambientes corporativos. Hoje foco em aplicações web, automações e sistemas internos com React,Js,Python e Rust.",
+    "Profissional de TI com mais de 4 anos em ambientes corporativos. Hoje foco em aplicações web, automações e sistemas internos com React,Java Script, Python e Rust.",
   aboutLead:
-    "Sou profissional de Tecnologia da Informação com mais de 4 anos de experiência em ambientes corporativos, atuando com infraestrutura, cloud, segurança da informação, automação e desenvolvimento de soluções internas.",
+    "Sou profissional de Tecnologia da Informação com mais de 4 anos de experiência em ambientes corporativos, atuando com automação e desenvolvimento de soluções internas.",
   aboutBody: [
     "Atualmente, venho direcionando minha carreira para desenvolvimento full stack, criando sistemas, automações e aplicações web usando React, JavaScript, Python e Rust.",
     "Minha principal diferença é unir visão prática de infraestrutura, segurança, automação e desenvolvimento, criando soluções funcionais, seguras e pensadas para ambientes reais de negócio.",
