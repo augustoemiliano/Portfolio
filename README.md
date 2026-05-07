@@ -1,121 +1,105 @@
-# Portfólio — Augusto Emiliano
+# Meu portfólio (GitHub Pages)
 
-Site estático de portfólio profissional para **Desenvolvedor Full Stack Júnior**, construído com **React**, **TypeScript**, **Vite** e **Tailwind CSS**, com animações leves em **Framer Motion** e ícones **Lucide React**. Pensado para deploy gratuito no **GitHub Pages** (sem backend, sem SSR, sem banco de dados).
+Este repositório é o código do meu site de portfólio — **Augusto Emiliano**. Deixei este README principalmente para **eu não esquecer** o fluxo de desenvolvimento e deploy, e para quem clonar conseguir rodar e publicar sem adivinhar detalhe de configuração.
 
-## Objetivo
+- **Repositório no GitHub:** [github.com/augustoemiliano/Portfolio](https://github.com/augustoemiliano/Portfolio)
+- **Site no GitHub Pages (quando o deploy estiver ok):** [augustoemiliano.github.io/Portfolio/](https://augustoemiliano.github.io/Portfolio/)
 
-Comunicar experiência real em **TI corporativa** (infraestrutura, cloud, segurança, automação, ITIL/SLA) e a transição fortalecida para **desenvolvimento full stack**, com foco em **React**, **TypeScript**, **Java**, **Python**, **Rust**, **Node.js** e **automação**.
+## O que eu usei
 
-## Tecnologias
+Quis manter tudo **estático** em produção (sem servidor obrigatório, sem SSR, sem banco):
 
-- React 19 + TypeScript
-- Vite 6
-- Tailwind CSS 3
-- Framer Motion
-- Lucide React
+- **React** + **TypeScript** + **Vite**
+- **Tailwind CSS**
+- **Framer Motion** (animações leves)
+- **Lucide React** (ícones)
 
-## Como rodar localmente
+O site é **uma página só**, com links internos por **âncoras** (`#sobre`, `#projetos`, etc.). **Não uso React Router** de propósito: no GitHub Pages isso evita dor de cabeça com rotas e `404.html`.
+
+## Rodar localmente
+
+Depois de clonar, na **raiz deste repositório** (a pasta `Portfolio`):
 
 ```bash
-cd portfolio-augusto
 npm install
 npm run dev
 ```
 
-Abra o endereço exibido no terminal (geralmente `http://localhost:5173`).
+O Vite mostra o endereço (geralmente `http://localhost:5173`).
 
-### Simular o base path do GitHub Pages
-
-Se o site for publicado em `https://usuario.github.io/nome-do-repo/`, crie um arquivo `.env` na raiz do projeto:
-
-```bash
-cp .env.example .env
-```
-
-Edite `.env` e defina, por exemplo:
-
-```env
-VITE_BASE=/nome-do-repo/
-```
-
-Reinicie o `npm run dev` e teste assets e âncoras com o mesmo prefixo que o GitHub Pages usará.
-
-## Build e preview
+Build e preview local do que vai parar no Pages:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-O resultado estático fica em `dist/`.
+Saída em `dist/`.
 
-## GitHub Pages — `base` no Vite
+## GitHub Pages e o `base` do Vite
 
-O Vite usa o campo **`base`** para prefixar assets no build. Este projeto lê a variável de ambiente **`VITE_BASE`** em `vite.config.ts`:
+No GitHub Pages o site quase nunca fica na raiz do domínio **a não ser** que o repositório seja do tipo `usuario.github.io`.
 
-| Onde o site será publicado | Valor de `VITE_BASE` |
-|----------------------------|----------------------|
-| `https://SEU_USUARIO.github.io/` (repositório `SEU_USUARIO.github.io`) | `/` |
-| `https://SEU_USUARIO.github.io/REPO/` (repositório de projeto) | `/REPO/` (ex.: `/portfolio-augusto/`) |
+No meu caso, o remoto é [augustoemiliano/Portfolio](https://github.com/augustoemiliano/Portfolio), então a URL pública fica em [augustoemiliano.github.io/Portfolio/](https://augustoemiliano.github.io/Portfolio/).
 
-**Arquivo:** `vite.config.ts` — comentários explicam o comportamento. Em CI, o valor é injetado pelo workflow em `.github/workflows/deploy-pages.yml` (variável `VITE_BASE` no passo **Build**).
+O prefixo dos assets no `index.html` precisa ser **exatamente** o do repositório (no meu caso **`/Portfolio/`**, com **P** maiúsculo). Se o build sair com outro prefixo (ex.: `/portfolio-augusto/`), o navegador pede o `.js` numa URL errada, recebe **HTML de 404** (`text/html`) e o console acusa **MIME não permitido** para módulo → **página em branco**. No **GitHub Actions** o `vite.config.ts` usa a variável automática `GITHUB_REPOSITORY` para montar o `base`; localmente continuo podendo forçar com `VITE_BASE` no `.env`.
 
-> **Importante:** se o nome do repositório mudar, atualize `VITE_BASE` no workflow **e** no `.env` local para coincidir com o caminho do GitHub Pages.
+No Vite isso é o campo **`base`**. Eu leio **`VITE_BASE`** no `vite.config.ts` e normalizo (barra no final quando não é só `/`).
 
-## Publicar com GitHub Actions
+**Regra geral:**
 
-1. Crie um repositório no GitHub e envie este código para a branch `main`.
-2. Em **Settings → Pages → Build and deployment**, escolha **GitHub Actions** como fonte.
-3. Ajuste `VITE_BASE` no arquivo `.github/workflows/deploy-pages.yml` para o seu caso (`/` ou `/nome-do-repo/`).
-4. Faça push para `main`. O workflow **Deploy GitHub Pages** faz `npm install`, `npm run build` e publica o artefato na Pages.
+| Onde o site fica | `VITE_BASE` |
+|------------------|-------------|
+| `https://SEU_USUARIO.github.io/` (repo `SEU_USUARIO.github.io`) | `/` |
+| `https://SEU_USUARIO.github.io/NOME_DO_REPO/` | `/NOME_DO_REPO/` |
 
-Na primeira vez, o ambiente **github-pages** pode precisar ser autorizado nas configurações do repositório (GitHub costuma pedir confirmação).
+Se eu renomear o repositório no GitHub, **tenho que atualizar** o `VITE_BASE` no workflow **e** no `.env` local para bater com o novo caminho.
 
-### Rotas
+### Testar o `base` antes do deploy
 
-O site é **página única** com navegação por **âncoras** (`#sobre`, `#projetos`, etc.). Não há React Router — compatível com GitHub Pages sem truques de `404.html`.
-
-## Estrutura de pastas
-
-```
-portfolio-augusto/
-├── public/                 # Arquivos estáticos (favicon, PDF do CV)
-├── src/
-│   ├── assets/             # Imagens e mídia (vazio por padrão)
-│   ├── components/         # Seções e layout
-│   │   └── ui/             # Componentes reutilizáveis
-│   ├── data/               # Conteúdo tipado (projetos, experiências, skills)
-│   ├── styles/             # globals.css (Tailwind + utilitários)
-│   ├── App.tsx
-│   └── main.tsx
-├── .github/workflows/      # Deploy GitHub Pages
-├── vite.config.ts
-├── tailwind.config.js
-└── package.json
+```bash
+cp .env.example .env
 ```
 
-## Manter conteúdo no futuro
+No `.env`, uso o mesmo valor que o GitHub Actions usa no build (no meu caso, `/Portfolio/`). Reinicio o `npm run dev` e confiro se CSS/JS carregam e se os links não quebram.
 
-| O que alterar | Arquivo |
-|---------------|---------|
-| Nome, headline, contato, footer, currículo | `src/data/site.ts` |
-| Projetos, links, status, destaques | `src/data/projects.ts` |
-| Experiências e bullets | `src/data/experiences.ts` |
-| Categorias e lista de tecnologias | `src/data/skills.ts` |
+## Como eu publico (GitHub Actions)
+
+O arquivo `.github/workflows/deploy-pages.yml` roda em push na `main`: `npm install`, `npm run build` e sobe o `dist/` para o Pages (o `base` do Vite no CI vem do `GITHUB_REPOSITORY`, não preciso lembrar de setar `VITE_BASE` no YAML).
+
+No GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**. Na primeira vez pode pedir para liberar o ambiente `github-pages`.
+
+Se um dia eu quiser publicar “na mão”, dá para subir o conteúdo de `dist/` por outro fluxo; prefiro Actions porque fica repetível.
+
+## Como eu organizei o código
+
+```
+public/                 # favicon, PDF do CV etc.
+src/
+  components/           # Header, Hero, seções
+  components/ui/        # botões, cards, timeline…
+  data/                 # textos e listas (edito aqui sem mexer em layout)
+  styles/               # globals.css (Tailwind + utilitários)
+  App.tsx
+  main.tsx
+```
+
+Onde costumo mexer quando atualizo conteúdo:
+
+| O quê | Onde |
+|-------|------|
+| Dados pessoais, hero, contato, currículo | `src/data/site.ts` |
+| Projetos | `src/data/projects.ts` |
+| Experiências | `src/data/experiences.ts` |
+| Stacks | `src/data/skills.ts` |
 | Certificações | `src/data/certifications.ts` |
-| Menu, ordem das seções | `src/components/Header.tsx`, `src/App.tsx` |
+| Menu / ordem das seções | `src/components/Header.tsx`, `src/App.tsx` |
 
-### Currículo em PDF
-
-1. Coloque o arquivo em `public/cv/` (ex.: `public/cv/curriculo.pdf`).
-2. Em `src/data/site.ts`, defina `resumePdfPath: "cv/curriculo.pdf"` (sem barra inicial).
-3. O botão **Baixar currículo** no hero passará a usar a URL correta com `import.meta.env.BASE_URL`.
+**PDF do currículo:** arquivo em `public/cv/`; em `site.ts`, campo `resumePdfPath` relativo a `public/` (ex.: `cv/curriculo.pdf`). O hero usa `import.meta.env.BASE_URL` para montar a URL certa com subpasta no Pages.
 
 ## Contato
 
 - **E-mail:** augustope99@gmail.com  
 - **GitHub:** https://github.com/augustoemiliano  
 
----
-
-Construindo soluções com código, automação, segurança e visão de negócio.
+Se eu mudar o nome do repo ou a forma de publicar, atualizo este README e o `VITE_BASE` para não ficar documentação mentirosa.

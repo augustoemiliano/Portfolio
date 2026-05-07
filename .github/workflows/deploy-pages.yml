@@ -30,12 +30,13 @@ jobs:
         run: npm install
 
       - name: Build
-        env:
-          # IMPORTANTE:
-          # - Repositório de projeto (ex.: github.com/usuario/portfolio-augusto) → "/portfolio-augusto/"
-          # - Repositório de usuário (ex.: github.com/usuario/usuario.github.io) → "/"
-          VITE_BASE: /portfolio-augusto/
+        # O base vem do GITHUB_REPOSITORY no vite.config.ts (não depende de VITE_BASE aqui).
         run: npm run build
+
+      - name: Conferir base no index (evita página em branco)
+        run: |
+          test -f dist/index.html
+          grep -q "/${{ github.event.repository.name }}/assets/" dist/index.html || (echo "ERRO: dist/index.html não usa o base /${{ github.event.repository.name }}/ — veja VITE_BASE e vite.config." && exit 1)
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
