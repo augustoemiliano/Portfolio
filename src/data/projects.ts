@@ -88,4 +88,32 @@ export const projects: readonly Project[] = [
     statusLabel: "Concluído",
     links: [{ label: "Repositório", href: "https://github.com/augustoemiliano/taskflow-kanban" }],
   },
+  {
+    id: "ETL-Financeiro",
+    name: "ETL Financeiro",
+    summary:
+      "Sistema demonstrativo pipeline ETL com múltiplas fontes, validação forte, PostgreSQL como destino analítico, relatórios (CSV + JSON), agendamento leve (`schedule`), API opcional (**FastAPI**), infraestrutura **Docker**, migrações **Alembic** e cobertura de testes (**pytest**) — sem credenciais no código.",
+    technologies: ["Python", "SQL", "API REST", "Docker", "Alembic", "pytest", "schedule", "FastAPI"],
+    highlights: [
+      "Integração com bancos de dados",
+      "Integração com APIs de financeiro",
+    ],
+    status: "concluido",
+    statusLabel: "Concluído",
+    links: [{ label: "Repositório", href: "https://github.com/augustoemiliano/ETL-Financeiro" }],
+  },
+  {
+    id: "Sistema-Inteligente-de-Emiss-o-de-Minutas",
+    name: "Sistema Inteligente de Emissão de Minutas",
+    summary:
+      "Sistema inteligente de emissão de minutas, com integração com bancos de dados e APIs de emissão de minutas.",
+    technologies: ["Python", "SQL", "API REST", "Docker", "Alembic", "pytest", "schedule", "FastAPI"],
+    highlights: [
+      "Integração com bancos de dados",
+      "Integração com APIs de emissão de minutas",
+    ],
+    status: "concluido",
+    statusLabel: "Concluído",
+    links: [{ label: "Repositório", href: "https://github.com/augustoemiliano/Sistema-Inteligente-de-Emiss-o-de-Minutas" }],
+  },
 ] as const;
