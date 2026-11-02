@@ -27,7 +27,10 @@ jobs:
           cache: npm
 
       - name: Install
-        run: npm install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build
         # O base vem do GITHUB_REPOSITORY no vite.config.ts (não depende de VITE_BASE aqui).
