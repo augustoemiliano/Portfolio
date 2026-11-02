@@ -1,5 +1,5 @@
 export const site = {
-  name: "Augusto Emiliano",
+  name: "Augusto Pereira Emiliano",
   title: "Desenvolvedor Full Stack Júnior | React | Python | Rust | Automação",
   location: "Uberlândia – MG",
   email: "augustope99@gmail.com",
@@ -7,6 +7,8 @@ export const site = {
   whatsappE164: "5534992032859",
   githubUrl: "https://github.com/augustoemiliano",
   githubHandle: "augustoemiliano",
+  linkedinUrl: "https://www.linkedin.com/in/augustope99",
+  linkedinHandle: "augustope99",
   heroHeadline:
     "Desenvolvedor Full Stack em formação contínua, com experiência real em infraestrutura, automação, cloud e segurança da informação.",
   heroSub:

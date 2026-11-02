@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Download, Github, Mail } from "lucide-react";
+import { Download, Github, Linkedin, Mail } from "lucide-react";
 import { site } from "@/data/site";
 import { Button } from "./ui/Button";
 
@@ -43,6 +43,11 @@ export function Hero() {
             <Button href={site.githubUrl} variant="outline" external>
               <Github className="h-4 w-4" aria-hidden />
               GitHub
+              <span className="sr-only">(abre em nova aba)</span>
+            </Button>
+            <Button href={site.linkedinUrl} variant="outline" external>
+              <Linkedin className="h-4 w-4" aria-hidden />
+              LinkedIn
               <span className="sr-only">(abre em nova aba)</span>
             </Button>
             {resumeHref ? (

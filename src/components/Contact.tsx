@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Copy, Github, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Check, Copy, Github, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { SectionTitle } from "./ui/SectionTitle";
 import { Button } from "./ui/Button";
@@ -70,6 +70,21 @@ export function Contact() {
                   >
                     <Github className="h-4 w-4 text-accent-cyan/90" aria-hidden />
                     github.com/{site.githubHandle}
+                    <span className="sr-only">(abre em nova aba)</span>
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">LinkedIn</dt>
+                <dd className="mt-2">
+                  <a
+                    className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-accent-cyan"
+                    href={site.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Linkedin className="h-4 w-4 text-accent-cyan/90" aria-hidden />
+                    linkedin.com/in/{site.linkedinHandle}
                     <span className="sr-only">(abre em nova aba)</span>
                   </a>
                 </dd>
