@@ -135,5 +135,6 @@ export const projects: readonly Project[] = [
     status: "concluido",
     statusLabel: "Concluído",
     links: [{ label: "Repositório", href: `${GITHUB}/taskflow-kanban` }],
+    demoUrl: "https://augustoemiliano.github.io/taskflow-kanban/",
   },
 ] as const;

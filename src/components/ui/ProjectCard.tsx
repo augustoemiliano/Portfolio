@@ -88,7 +88,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               href={link.href}
               variant="outline"
               external
-              aria-label={`${link.label} do projeto ${project.name} no GitHub (abre em nova aba)`}
+              aria-label={`${link.label} do projeto ${project.name}${link.href.includes("github.com") ? " no GitHub" : ""} (abre em nova aba)`}
               className="px-3 py-2 text-xs sm:text-sm"
             >
               {link.label}
