@@ -10,7 +10,7 @@ export function Experience() {
           eyebrow="Trajetória"
           title="Experiência profissional"
           titleId="experience-heading"
-          subtitle="Atuação em automação, sistemas internos, infraestrutura e segurança em ambientes corporativos."
+          subtitle="De suporte e infraestrutura ao desenvolvimento backend: automação, sistemas internos e segurança em ambientes corporativos e no setor público."
         />
 
         <ol className="relative space-y-6">

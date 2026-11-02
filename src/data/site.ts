@@ -1,6 +1,6 @@
 export const site = {
   name: "Augusto Pereira Emiliano",
-  title: "Desenvolvedor Full Stack Júnior | React | Python | Rust | Automação",
+  title: "Desenvolvedor Full Stack | Product Builder | Java | Python | React | Rust",
   location: "Uberlândia – MG",
   email: "augustope99@gmail.com",
   phoneDisplay: "(34) 99203-2859",

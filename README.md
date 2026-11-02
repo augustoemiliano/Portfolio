@@ -1,6 +1,6 @@
 # Portfólio — Augusto Pereira Emiliano
 
-Site pessoal de portfólio de **Augusto Pereira Emiliano**, desenvolvedor full stack júnior. Reúne meus projetos, stack, experiência profissional, certificações e contato.
+Site pessoal de portfólio de **Augusto Pereira Emiliano**, desenvolvedor full stack. Reúne meus projetos, stack, experiência profissional, certificações e contato.
 
 - **Site:** [augustoemiliano.github.io/Portfolio](https://augustoemiliano.github.io/Portfolio/)
 - **GitHub:** [github.com/augustoemiliano](https://github.com/augustoemiliano)

@@ -29,7 +29,7 @@ export function Contact() {
           eyebrow="Vamos conversar"
           title="Contato"
           titleId="contact-heading"
-          subtitle="Aberto a oportunidades júnior em desenvolvimento full stack e automação."
+          subtitle="Aberto a oportunidades em desenvolvimento full stack e automação."
         />
 
         <div className="grid gap-6 lg:grid-cols-12">
