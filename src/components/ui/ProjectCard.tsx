@@ -20,7 +20,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <motion.article
-      layout
+      aria-labelledby={`project-${project.id}`}
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -47,7 +47,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 {project.featuredLabel}
               </p>
             ) : null}
-            <h3 className={isFeatured ? "text-2xl font-semibold text-white" : "text-xl font-semibold text-white"}>
+            <h3 id={`project-${project.id}`} className={isFeatured ? "text-2xl font-semibold text-white" : "text-xl font-semibold text-white"}>
               {project.name}
             </h3>
           </div>
@@ -61,7 +61,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <p className="text-sm leading-relaxed text-slate-300 sm:text-base">{project.summary}</p>
 
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Tecnologias</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Tecnologias</p>
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((t) => (
               <SkillBadge key={t} label={t} />
@@ -70,7 +70,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Destaques</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Destaques</p>
           <ul className="grid gap-2 text-sm text-slate-300 sm:grid-cols-2">
             {project.highlights.map((h) => (
               <li key={h} className="flex gap-2">
@@ -83,13 +83,26 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
         <div className="mt-2 flex flex-wrap gap-3">
           {project.links.map((link) => (
-            <Button key={link.href} href={link.href} variant="outline" external className="px-3 py-2 text-xs sm:text-sm">
+            <Button
+              key={link.href}
+              href={link.href}
+              variant="outline"
+              external
+              aria-label={`${link.label} do projeto ${project.name} no GitHub (abre em nova aba)`}
+              className="px-3 py-2 text-xs sm:text-sm"
+            >
               {link.label}
               <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
             </Button>
           ))}
           {project.demoUrl ? (
-            <Button href={project.demoUrl} variant="primary" external className="px-3 py-2 text-xs sm:text-sm">
+            <Button
+              href={project.demoUrl}
+              variant="primary"
+              external
+              aria-label={`Demo ao vivo do projeto ${project.name} (abre em nova aba)`}
+              className="px-3 py-2 text-xs sm:text-sm"
+            >
               Demo ao vivo
               <ArrowUpRight className="h-4 w-4 opacity-90" aria-hidden />
             </Button>

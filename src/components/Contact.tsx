@@ -14,7 +14,9 @@ export function Contact() {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
+      // Sem acesso à área de transferência: abre o cliente de e-mail como alternativa.
       setCopied(false);
+      window.location.href = `mailto:${site.email}`;
     }
   }
 
@@ -40,7 +42,7 @@ export function Contact() {
           >
             <dl className="grid gap-6 sm:grid-cols-2">
               <div>
-                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">E-mail</dt>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">E-mail</dt>
                 <dd className="mt-2">
                   <a className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-accent-cyan" href={`mailto:${site.email}`}>
                     <Mail className="h-4 w-4 text-accent-cyan/90" aria-hidden />
@@ -49,7 +51,7 @@ export function Contact() {
                 </dd>
               </div>
               <div>
-                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">Telefone</dt>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Telefone</dt>
                 <dd className="mt-2">
                   <a className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-accent-cyan" href={`tel:+${site.whatsappE164}`}>
                     <Phone className="h-4 w-4 text-accent-cyan/90" aria-hidden />
@@ -58,7 +60,7 @@ export function Contact() {
                 </dd>
               </div>
               <div>
-                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">GitHub</dt>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">GitHub</dt>
                 <dd className="mt-2">
                   <a
                     className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-accent-cyan"
@@ -67,12 +69,13 @@ export function Contact() {
                     rel="noopener noreferrer"
                   >
                     <Github className="h-4 w-4 text-accent-cyan/90" aria-hidden />
-                    github.com/augustoemiliano
+                    github.com/{site.githubHandle}
+                    <span className="sr-only">(abre em nova aba)</span>
                   </a>
                 </dd>
               </div>
               <div>
-                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">Localização</dt>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Localização</dt>
                 <dd className="mt-2 inline-flex items-start gap-2 text-sm text-slate-200">
                   <MapPin className="mt-0.5 h-4 w-4 flex-none text-accent-cyan/90" aria-hidden />
                   {site.location}
@@ -81,7 +84,10 @@ export function Contact() {
             </dl>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button type="button" variant="primary" onClick={copyEmail} aria-live="polite">
+              <span className="sr-only" role="status" aria-live="polite">
+                {copied ? "E-mail copiado para a área de transferência." : ""}
+              </span>
+              <Button type="button" variant="primary" onClick={copyEmail}>
                 {copied ? (
                   <>
                     <Check className="h-4 w-4" aria-hidden />
@@ -97,6 +103,7 @@ export function Contact() {
               <Button href={waHref} variant="outline" external>
                 <MessageCircle className="h-4 w-4" aria-hidden />
                 WhatsApp
+                <span className="sr-only">(abre em nova aba)</span>
               </Button>
             </div>
           </motion.div>
@@ -111,9 +118,9 @@ export function Contact() {
             <p className="text-sm leading-relaxed text-slate-300">
               Prefiro mensagens objetivas: stack desejada, modelo de trabalho e link da vaga. Respondo o quanto antes.
             </p>
-            <p className="mt-4 text-xs text-slate-500">
-              Ao clicar em WhatsApp, você será direcionado para o aplicativo ou web com o número{" "}
-              <span className="font-mono text-slate-400">{site.whatsappE164}</span>.
+            <p className="mt-4 text-xs text-slate-400">
+              Ao clicar em WhatsApp, você será direcionado para o aplicativo ou para o WhatsApp Web com o número{" "}
+              <span className="font-mono text-slate-300">{site.phoneDisplay}</span>.
             </p>
           </motion.aside>
         </div>
