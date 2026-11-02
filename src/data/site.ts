@@ -31,5 +31,5 @@ export const site = {
    * Caminho relativo a `public/` (sem barra inicial), ex.: `cv/curriculo.pdf`.
    * O Hero monta a URL com `import.meta.env.BASE_URL` para funcionar no GitHub Pages.
    */
-  resumePdfPath: null as string | null,
+  resumePdfPath: "cv/curriculo-augusto-pereira-emiliano.pdf" as string | null,
 } as const;
