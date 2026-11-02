@@ -6,14 +6,15 @@ export const site = {
   phoneDisplay: "(34) 99203-2859",
   whatsappE164: "5534992032859",
   githubUrl: "https://github.com/augustoemiliano",
+  githubHandle: "augustoemiliano",
   heroHeadline:
     "Desenvolvedor Full Stack em formação contínua, com experiência real em infraestrutura, automação, cloud e segurança da informação.",
   heroSub:
-    "Profissional de TI com mais de 4 anos em ambientes corporativos. Hoje foco em aplicações web, automações e sistemas internos com React,Java Script, Python e Rust.",
+    "Profissional de TI com mais de 4 anos em ambientes corporativos. Hoje foco em aplicações web, automações e sistemas internos com React, TypeScript, Python, Java e Rust.",
   aboutLead:
     "Sou profissional de Tecnologia da Informação com mais de 4 anos de experiência em ambientes corporativos, atuando com automação e desenvolvimento de soluções internas.",
   aboutBody: [
-    "Atualmente, venho direcionando minha carreira para desenvolvimento full stack, criando sistemas, automações e aplicações web usando React, JavaScript, Python e Rust.",
+    "Atualmente, venho direcionando minha carreira para desenvolvimento full stack, criando sistemas, automações e aplicações web com React, TypeScript, Python (FastAPI), Java (Spring Boot) e Rust.",
     "Minha principal diferença é unir visão prática de infraestrutura, segurança, automação e desenvolvimento, criando soluções funcionais, seguras e pensadas para ambientes reais de negócio.",
   ],
   aboutHighlights: [

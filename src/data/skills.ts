@@ -13,7 +13,12 @@ export const skillCategories: readonly SkillCategory[] = [
   {
     id: "backend",
     title: "Back-end",
-    items: ["Node.js", "Java", "Spring Boot", "Python", "Rust", "PHP"],
+    items: ["Python", "FastAPI", "Java", "Spring Boot", "Node.js", "Express", "Rust", "PHP"],
+  },
+  {
+    id: "data-devops",
+    title: "Dados & DevOps",
+    items: ["PostgreSQL", "SQLAlchemy", "Alembic", "Redis", "Celery", "pandas", "Docker", "Docker Compose", "GitHub Actions"],
   },
   {
     id: "automation",
