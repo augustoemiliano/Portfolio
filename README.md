@@ -10,9 +10,9 @@ Site pessoal de portfólio de **Augusto Emiliano**, desenvolvedor full stack jú
 | Projeto | Stack principal | Repositório |
 |---------|-----------------|-------------|
 | FlowCred — gestão de propostas de crédito imobiliário (full stack) | React, TypeScript, FastAPI, SQLAlchemy, JWT, Docker | [Front](https://github.com/augustoemiliano/FlowCred-Front) · [Back](https://github.com/augustoemiliano/FlowCred-Back) |
-| Sistema Inteligente de Emissão de Minutas | FastAPI, PostgreSQL, Redis, Celery, JWT, Jinja2 | [Repo](https://github.com/augustoemiliano/Sistema-Inteligente-de-Emiss-o-de-Minutas) |
+| Sistema Inteligente de Emissão de Minutas | FastAPI, PostgreSQL, Redis, Celery, JWT, Jinja2 | [Repo](https://github.com/augustoemiliano/Sistema-Inteligente-de-Emissao-de-Minutas) |
 | ETL Financeiro | Python, pandas, PostgreSQL, Docker | [Repo](https://github.com/augustoemiliano/ETL-Financeiro) |
-| API de Fila de Tarefas | Java, Spring Boot, PostgreSQL, OpenAPI, Docker Compose | [Repo](https://github.com/augustoemiliano/filas-de-tarefas-simples-Java-Spring-) |
+| API de Fila de Tarefas | Java, Spring Boot, PostgreSQL, OpenAPI, Docker Compose | [Repo](https://github.com/augustoemiliano/fila-de-tarefas-java-spring) |
 | TaskFlow Kanban | React, TypeScript, Node.js, Express | [Repo](https://github.com/augustoemiliano/taskflow-kanban) |
 
 ## Tecnologias do site

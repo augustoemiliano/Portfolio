@@ -82,7 +82,7 @@ export const projects: readonly Project[] = [
     ],
     status: "concluido",
     statusLabel: "Concluído",
-    links: [{ label: "Repositório", href: `${GITHUB}/Sistema-Inteligente-de-Emiss-o-de-Minutas` }],
+    links: [{ label: "Repositório", href: `${GITHUB}/Sistema-Inteligente-de-Emissao-de-Minutas` }],
   },
   {
     id: "etl-financeiro",
@@ -117,7 +117,7 @@ export const projects: readonly Project[] = [
     ],
     status: "concluido",
     statusLabel: "Concluído",
-    links: [{ label: "Repositório", href: `${GITHUB}/filas-de-tarefas-simples-Java-Spring-` }],
+    links: [{ label: "Repositório", href: `${GITHUB}/fila-de-tarefas-java-spring` }],
   },
   {
     id: "taskflow-kanban",
