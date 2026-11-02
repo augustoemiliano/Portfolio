@@ -1,105 +1,78 @@
-# Meu portfólio (GitHub Pages)
+# Portfólio — Augusto Emiliano
 
-Este repositório é o código do meu site de portfólio — **Augusto Emiliano**. Deixei este README principalmente para **eu não esquecer** o fluxo de desenvolvimento e deploy, e para quem clonar conseguir rodar e publicar sem adivinhar detalhe de configuração.
+Site pessoal de portfólio de **Augusto Emiliano**, desenvolvedor full stack júnior. Reúne meus projetos, stack, experiência profissional, certificações e contato.
 
-- **Repositório no GitHub:** [github.com/augustoemiliano/Portfolio](https://github.com/augustoemiliano/Portfolio)
-- **Site no GitHub Pages (quando o deploy estiver ok):** [augustoemiliano.github.io/Portfolio/](https://augustoemiliano.github.io/Portfolio/)
+- **Site:** [augustoemiliano.github.io/Portfolio](https://augustoemiliano.github.io/Portfolio/)
+- **GitHub:** [github.com/augustoemiliano](https://github.com/augustoemiliano)
 
-## O que eu usei
+## Projetos apresentados
 
-Quis manter tudo **estático** em produção (sem servidor obrigatório, sem SSR, sem banco):
+| Projeto | Stack principal | Repositório |
+|---------|-----------------|-------------|
+| FlowCred — gestão de propostas de crédito imobiliário (full stack) | React, TypeScript, FastAPI, SQLAlchemy, JWT, Docker | [Front](https://github.com/augustoemiliano/FlowCred-Front) · [Back](https://github.com/augustoemiliano/FlowCred-Back) |
+| Sistema Inteligente de Emissão de Minutas | FastAPI, PostgreSQL, Redis, Celery, JWT, Jinja2 | [Repo](https://github.com/augustoemiliano/Sistema-Inteligente-de-Emiss-o-de-Minutas) |
+| ETL Financeiro | Python, pandas, PostgreSQL, Docker | [Repo](https://github.com/augustoemiliano/ETL-Financeiro) |
+| API de Fila de Tarefas | Java, Spring Boot, PostgreSQL, OpenAPI, Docker Compose | [Repo](https://github.com/augustoemiliano/filas-de-tarefas-simples-Java-Spring-) |
+| TaskFlow Kanban | React, TypeScript, Node.js, Express | [Repo](https://github.com/augustoemiliano/taskflow-kanban) |
 
-- **React** + **TypeScript** + **Vite**
-- **Tailwind CSS**
-- **Framer Motion** (animações leves)
-- **Lucide React** (ícones)
+## Tecnologias do site
 
-O site é **uma página só**, com links internos por **âncoras** (`#sobre`, `#projetos`, etc.). **Não uso React Router** de propósito: no GitHub Pages isso evita dor de cabeça com rotas e `404.html`.
+- React 19 + TypeScript + Vite
+- Tailwind CSS
+- Framer Motion (animações, respeitando "reduzir movimento" do sistema)
+- Lucide React (ícones)
+- ESLint
+
+É uma página única e estática, com navegação por âncoras (`#sobre`, `#projetos`…). Não há React Router, o que evita problemas de rotas no GitHub Pages.
 
 ## Rodar localmente
 
-Depois de clonar, na **raiz deste repositório** (a pasta `Portfolio`):
+Requer Node.js 20+.
 
 ```bash
 npm install
-npm run dev
+npm run dev        # servidor de desenvolvimento (http://localhost:5173)
+npm run lint       # ESLint
+npm run typecheck  # checagem de tipos
+npm run build      # gera dist/
+npm run preview    # serve o build localmente
 ```
 
-O Vite mostra o endereço (geralmente `http://localhost:5173`).
+## Publicação (GitHub Pages)
 
-Build e preview local do que vai parar no Pages:
+O workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) roda a cada push na `main`: `npm ci` → `npm run lint` → `npm run build` → publica `dist/` no GitHub Pages.
+
+Pré-requisito (uma vez): no GitHub, **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+### Sobre o `base` do Vite
+
+Como o repositório se chama `Portfolio`, o site fica em `/Portfolio/` e os assets precisam desse prefixo. No CI, o `vite.config.ts` monta o `base` automaticamente a partir de `GITHUB_REPOSITORY`; o workflow ainda confere se o `dist/index.html` usa o prefixo certo (evita página em branco).
+
+Para testar localmente com o mesmo prefixo:
 
 ```bash
-npm run build
-npm run preview
+cp .env.example .env   # contém VITE_BASE=/Portfolio/
+npm run build && npm run preview
 ```
 
-Saída em `dist/`.
+Se o repositório for renomeado, atualize também as URLs absolutas de `canonical`/Open Graph em `index.html`.
 
-## GitHub Pages e o `base` do Vite
+## Onde editar o conteúdo
 
-No GitHub Pages o site quase nunca fica na raiz do domínio **a não ser** que o repositório seja do tipo `usuario.github.io`.
-
-No meu caso, o remoto é [augustoemiliano/Portfolio](https://github.com/augustoemiliano/Portfolio), então a URL pública fica em [augustoemiliano.github.io/Portfolio/](https://augustoemiliano.github.io/Portfolio/).
-
-O prefixo dos assets no `index.html` precisa ser **exatamente** o do repositório (no meu caso **`/Portfolio/`**, com **P** maiúsculo). Se o build sair com outro prefixo (ex.: `/portfolio-augusto/`), o navegador pede o `.js` numa URL errada, recebe **HTML de 404** (`text/html`) e o console acusa **MIME não permitido** para módulo → **página em branco**. No **GitHub Actions** o `vite.config.ts` usa a variável automática `GITHUB_REPOSITORY` para montar o `base`; localmente continuo podendo forçar com `VITE_BASE` no `.env`.
-
-No Vite isso é o campo **`base`**. Eu leio **`VITE_BASE`** no `vite.config.ts` e normalizo (barra no final quando não é só `/`).
-
-**Regra geral:**
-
-| Onde o site fica | `VITE_BASE` |
-|------------------|-------------|
-| `https://SEU_USUARIO.github.io/` (repo `SEU_USUARIO.github.io`) | `/` |
-| `https://SEU_USUARIO.github.io/NOME_DO_REPO/` | `/NOME_DO_REPO/` |
-
-Se eu renomear o repositório no GitHub, **tenho que atualizar** o `VITE_BASE` no workflow **e** no `.env` local para bater com o novo caminho.
-
-### Testar o `base` antes do deploy
-
-```bash
-cp .env.example .env
-```
-
-No `.env`, uso o mesmo valor que o GitHub Actions usa no build (no meu caso, `/Portfolio/`). Reinicio o `npm run dev` e confiro se CSS/JS carregam e se os links não quebram.
-
-## Como eu publico (GitHub Actions)
-
-O arquivo `.github/workflows/deploy-pages.yml` roda em push na `main`: `npm install`, `npm run build` e sobe o `dist/` para o Pages (o `base` do Vite no CI vem do `GITHUB_REPOSITORY`, não preciso lembrar de setar `VITE_BASE` no YAML).
-
-No GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**. Na primeira vez pode pedir para liberar o ambiente `github-pages`.
-
-Se um dia eu quiser publicar “na mão”, dá para subir o conteúdo de `dist/` por outro fluxo; prefiro Actions porque fica repetível.
-
-## Como eu organizei o código
-
-```
-public/                 # favicon, PDF do CV etc.
-src/
-  components/           # Header, Hero, seções
-  components/ui/        # botões, cards, timeline…
-  data/                 # textos e listas (edito aqui sem mexer em layout)
-  styles/               # globals.css (Tailwind + utilitários)
-  App.tsx
-  main.tsx
-```
-
-Onde costumo mexer quando atualizo conteúdo:
-
-| O quê | Onde |
-|-------|------|
-| Dados pessoais, hero, contato, currículo | `src/data/site.ts` |
+| O quê | Arquivo |
+|-------|---------|
+| Dados pessoais, textos do topo e contato | `src/data/site.ts` |
 | Projetos | `src/data/projects.ts` |
-| Experiências | `src/data/experiences.ts` |
-| Stacks | `src/data/skills.ts` |
+| Experiência | `src/data/experiences.ts` |
+| Tecnologias | `src/data/skills.ts` |
 | Certificações | `src/data/certifications.ts` |
-| Menu / ordem das seções | `src/components/Header.tsx`, `src/App.tsx` |
+| Menu e ordem das seções | `src/components/Header.tsx`, `src/App.tsx` |
+| SEO (title, description, Open Graph) | `index.html` |
+| Favicon e imagem de compartilhamento | `public/favicon.svg`, `public/og-image.png` |
 
-**PDF do currículo:** arquivo em `public/cv/`; em `site.ts`, campo `resumePdfPath` relativo a `public/` (ex.: `cv/curriculo.pdf`). O hero usa `import.meta.env.BASE_URL` para montar a URL certa com subpasta no Pages.
+**Currículo em PDF:** coloque o arquivo em `public/cv/` e preencha `resumePdfPath` em `src/data/site.ts` (ex.: `cv/curriculo.pdf`). O botão "Baixar currículo" só aparece quando esse campo está preenchido.
 
 ## Contato
 
-- **E-mail:** augustope99@gmail.com  
-- **GitHub:** https://github.com/augustoemiliano  
-
-Se eu mudar o nome do repo ou a forma de publicar, atualizo este README e o `VITE_BASE` para não ficar documentação mentirosa.
+- E-mail: augustope99@gmail.com
+- GitHub: [augustoemiliano](https://github.com/augustoemiliano)
